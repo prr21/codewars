@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Codewars</title>
+</head>
+<body>
+
+	<div id="mocha"></div>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/6.0.2/mocha.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/6.0.2/mocha.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.2.0/chai.min.js"></script>
+	<script>
+		mocha.setup('bdd');
+		var assert = chai.assert;
+	</script>
+
+	<script src="codewars.test.js"></script>
+	<script src="codewars.js"></script>
+	<script>
+		mocha.run();
+	</script>
+</body>
+</html>
