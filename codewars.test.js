@@ -1,3 +1,4 @@
+//https://www.codewars.com/kata/stop-gninnips-my-sdrow/train/javascript
 function spinWords(string){
   let arr = string.split(' ');
 
@@ -10,3 +11,14 @@ function spinWords(string){
   }
   return arr.join(' ');
 }
+
+//https://www.codewars.com/kata/moving-zeros-to-the-end/train/javascript
+var moveZeros = function (arr) {
+    let zeros = [],
+        other = [];
+
+    for(let i = 0; i < arr.length; i++){
+        arr[i] === 0 ? zeros.push(arr[i]): other.push(arr[i]);
+    }
+    return other.concat(zeros)
+};
