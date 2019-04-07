@@ -76,3 +76,25 @@ describe('Bit Counting', () => {
 		
 	});
 });
+
+describe('Does my number look big in this?', () => {
+	describe('A Narcissistic Number is a number which is the sum of its own digits, each raised to the power of the number of digits in a given base. In this Kata, we will restrict ourselves to decimal (base 10).'
+	,() => {
+	  	it( "7 является числом Армстронга", function() {
+    		assert.equal(narcissistic( 7 ), true, "7 is narcissistic" );
+  		});
+		it( "1634 является числом Армстронга", function() {
+		    assert.equal(narcissistic( 1634 ), true, "1634 is narcissistic" );
+	  	});
+	  	it( "42360 не является числом Армстронга", function() {
+		    assert.equal(narcissistic( 42360 ), false, "42360 is not narcissistic" );
+	  	});
+	  	it( "47214 не является числом Армстронга", function() {
+		    assert.equal(narcissistic( 47214 ), false, "47214 is not narcissistic" );
+	  	});
+	  	it( "24678050 является числом Армстронга", function() {
+		    assert.equal(narcissistic( 24678050 ), true, "24678050 is narcissistic" );
+	  	});
+	  	
+	});
+});

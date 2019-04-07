@@ -33,3 +33,14 @@ var countBits = function(n) {
   	}
   	return arr.filter((i) => i == 1).length;
 };
+
+// https://www.codewars.com/kata/does-my-number-look-big-in-this/train/javascript
+function narcissistic(value) {
+	let arr = (value + '').split(''),
+	    result = 0;
+
+	for(let i = 0; i < arr.length; i++){
+		result += Math.pow(arr[i], arr.length);
+	}
+	return result == value;
+}
