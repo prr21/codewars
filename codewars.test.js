@@ -54,3 +54,25 @@ describe('Moving Zeros To The End', () => {
 		});
 	});
 });
+
+describe('Bit Counting', () => {
+	describe('Write a function that takes an integer as input, and returns the number of bits that are equal to one in the binary representation of that number. You can guarantee that input is non-negative.'
+	,() => {
+		it('0 в двоичном представлении равен " ", у которого единиц 0', () => {
+			assert.equal(countBits(0), 0);
+		});
+		it('4 в двоичном представлении равен 100, у которого единиц ', () => {
+			assert.equal(countBits(4), 1);
+		});
+		it('3811 в двоичном представлении равен 111011100011, у которого единиц 8', () => {
+			assert.equal(countBits(3811), 8);
+		});
+		it('392902058 в двоичном представлении равен 10111011010110011010110101010, у которого единиц 17', () => {
+			assert.equal(countBits(392902058), 17);
+		});
+		it('183337941 в двоичном представлении равен 1010111011011000001111010101, у которого единиц 16', () => {
+			assert.equal(countBits(183337941), 16);
+		});
+		
+	});
+});

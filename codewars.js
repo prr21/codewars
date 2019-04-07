@@ -22,3 +22,14 @@ var moveZeros = function (arr) {
     }
     return other.concat(zeros)
 };
+
+// https://www.codewars.com/kata/bit-counting/train/javascript
+var countBits = function(n) {
+  	let arr = [];
+
+  	while (n != 0) {
+  		arr.unshift( n%2 );      
+  		n = Math.floor( n/2 );
+  	}
+  	return arr.filter((i) => i == 1).length;
+};
