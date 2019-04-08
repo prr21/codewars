@@ -95,6 +95,26 @@ describe('Does my number look big in this?', () => {
 	  	it( "24678050 является числом Армстронга", function() {
 		    assert.equal(narcissistic( 24678050 ), true, "24678050 is narcissistic" );
 	  	});
-	  	
+	});
+});
+
+describe('Human Readable Time', () => {
+	describe('Write a function, which takes a non-negative integer (seconds) as input and returns the time in a human-readable format (HH:MM:SS)'
+	,() => {
+	  	it( "Должен вывести корректный формат времени", function() {
+		    assert.equal(humanReadable(0), '00:00:00');
+	  	});
+	  	it( "Должен вывести корректный формат времени", function() {
+		    assert.equal(humanReadable(90), '00:01:30');
+	  	});
+	  	it( "Должен вывести корректный формат времени", function() {
+		    assert.equal(humanReadable(3599), '00:59:59');
+	  	});
+	  	it( "Должен вывести корректный формат времени", function() {
+		    assert.equal(humanReadable(45296), '12:34:56');
+	  	});
+	  	it( "Должен вывести корректный формат времени", function() {
+		    assert.equal(humanReadable(359999), '99:59:59');
+	  	});
 	});
 });
