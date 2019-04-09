@@ -118,3 +118,23 @@ describe('Human Readable Time', () => {
 	  	});
 	});
 });
+describe('Rot13', () => {
+	describe('ROT13 is a simple letter substitution cipher that replaces a letter with the letter 13 letters after it in the alphabet. ROT13 is an example of the Caesar cipher. Create a function that takes a string and returns the string ciphered with Rot13. If there are numbers or special characters included in the string, they should be returned as they are. Only letters from the latin/english alphabet should be shifted, like in the original Rot13 "implementation".'
+	,() => {
+		it("Строка test должна быть зашифрована в grfg", function(){
+			assert.equal(rot13("test"), "grfg")
+		})
+		it("Строка 10+2 is twelve. должна быть зашифрована в gjryir.", function(){
+			assert.equal(rot13("10+2 is twelve."), "10+2 vf gjryir.")
+		})
+		it("Строка Codewars должна быть зашифрована в Pbqrjnef", function(){
+			assert.equal(rot13("Codewars"), "Pbqrjnef")
+		})
+		it("Строка Ruby is cool! должна быть зашифрована в pbby!", function(){
+			assert.equal(rot13("Ruby is cool!"), "Ehol vf pbby!")
+		})
+		it("Строка abcdefghijklmnopqrstuvwxyz должна быть зашифрована в nopqrstuvwxyzabcdefghijklm", function(){
+			assert.equal(rot13("abcdefghijklmnopqrstuvwxyz"), "nopqrstuvwxyzabcdefghijklm")
+		})
+	});
+});

@@ -55,3 +55,26 @@ function formatDate(n){
   	var number = Number.parseInt(n)
   	return number > 9? number : '0'+number;
 }
+
+// https://www.codewars.com/kata/rot13-1/train/javascript
+function rot13(message){
+	let res = '';
+  	for(let i = 0; i < message.length; i++){
+
+  		let index = message.charCodeAt(i) + 13,
+  			  word;
+
+  		if (/[a-z]/.test(message[i])) {
+	  	    index > 122? index+=96-122 :index;
+	  	    word = String.fromCharCode(index);
+
+  		} else if (/[A-Z]/.test(message[i])) {
+  			index > 90? index+=64-90 :index;
+  			word = String.fromCharCode(index);
+
+  		} else word = message[i];
+  		
+  		res += word;
+  	}
+  	return res;
+}
