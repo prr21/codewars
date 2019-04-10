@@ -1,6 +1,9 @@
 describe('Stop gninnipS My sdroW!', () => {
-	describe('Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed (Just like the name of this Kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.'
-	,() => {
+	describe(`Write a function that takes in a string of one or more words, 
+			and returns the same string, but with all five or more letter words reversed 
+			(Just like the name of this Kata). Strings passed in will consist of only letters and spaces.
+			Spaces will be included only when more than one word is present.` ,() => {
+
 		it('"Welcome" должно выдать строку "emocleW"', () => {
 			assert.equal(spinWords("Welcome"), "emocleW")});
 
@@ -25,8 +28,9 @@ describe('Stop gninnipS My sdroW!', () => {
 })
 
 describe('Moving Zeros To The End', () => {
-	describe('Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.'
-	,() => {
+	describe(`Write an algorithm that takes an array and moves all of the zeros to the end, 
+			preserving the order of the other elements.`, () => {
+
 		it('Все нули должны быть в конце', () => {
 			assert.equal(
 				JSON.stringify( moveZeros([1,2,0,1,0,1,0,3,0,1]) ),
@@ -56,8 +60,10 @@ describe('Moving Zeros To The End', () => {
 });
 
 describe('Bit Counting', () => {
-	describe('Write a function that takes an integer as input, and returns the number of bits that are equal to one in the binary representation of that number. You can guarantee that input is non-negative.'
-	,() => {
+	describe(`Write a function that takes an integer as input, 
+			and returns the number of bits that are equal to one in the binary representation of that number. 
+			You can guarantee that input is non-negative.`, () => {
+
 		it('0 в двоичном представлении равен " ", у которого единиц 0', () => {
 			assert.equal(countBits(0), 0);
 		});
@@ -78,8 +84,10 @@ describe('Bit Counting', () => {
 });
 
 describe('Does my number look big in this?', () => {
-	describe('A Narcissistic Number is a number which is the sum of its own digits, each raised to the power of the number of digits in a given base. In this Kata, we will restrict ourselves to decimal (base 10).'
-	,() => {
+	describe(`A Narcissistic Number is a number which is the sum of its own digits, 
+			each raised to the power of the number of digits in a given base. In this Kata, 
+			we will restrict ourselves to decimal (base 10).`, () => {
+
 	  	it( "7 является числом Армстронга", function() {
     		assert.equal(narcissistic( 7 ), true, "7 is narcissistic" );
   		});
@@ -99,8 +107,9 @@ describe('Does my number look big in this?', () => {
 });
 
 describe('Human Readable Time', () => {
-	describe('Write a function, which takes a non-negative integer (seconds) as input and returns the time in a human-readable format (HH:MM:SS)'
-	,() => {
+	describe(`Write a function, which takes a non-negative integer (seconds) 
+			as input and returns the time in a human-readable format (HH:MM:SS)`, () => {
+
 	  	it( "Должен вывести корректный формат времени", function() {
 		    assert.equal(humanReadable(0), '00:00:00');
 	  	});
@@ -119,8 +128,13 @@ describe('Human Readable Time', () => {
 	});
 });
 describe('Rot13', () => {
-	describe('ROT13 is a simple letter substitution cipher that replaces a letter with the letter 13 letters after it in the alphabet. ROT13 is an example of the Caesar cipher. Create a function that takes a string and returns the string ciphered with Rot13. If there are numbers or special characters included in the string, they should be returned as they are. Only letters from the latin/english alphabet should be shifted, like in the original Rot13 "implementation".'
-	,() => {
+	describe(`ROT13 is a simple letter substitution cipher that replaces a letter 
+			with the letter 13 letters after it in the alphabet. ROT13 is an example of the Caesar cipher. 
+			Create a function that takes a string and returns the string ciphered with Rot13.
+			If there are numbers or special characters included in the string, they should be returned as they are.
+			Only letters from the latin/english alphabet should be shifted, 
+			like in the original Rot13 "implementation".`, () => {
+				
 		it("Строка test должна быть зашифрована в grfg", function(){
 			assert.equal(rot13("test"), "grfg")
 		})
