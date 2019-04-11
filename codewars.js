@@ -78,3 +78,21 @@ function rot13(message){
   	}
   	return res;
 }
+
+// https://www.codewars.com/kata/range-extraction/train/javascript
+function solution(list){
+	let arr = [];
+
+	for(let i = 0; i < list.length; i++){
+    	let current = list[i];
+    
+		if ( (current + 2) == list[i+2] ) {
+			while ( (list[i] + 1) == list[i+1] ) i++;
+
+			arr.push(current +'-'+ list[i]);
+			continue;
+		}
+		arr.push(current)
+	}
+	return arr.join()
+}

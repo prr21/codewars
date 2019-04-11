@@ -88,19 +88,19 @@ describe('Does my number look big in this?', () => {
 			each raised to the power of the number of digits in a given base. In this Kata, 
 			we will restrict ourselves to decimal (base 10).`, () => {
 
-	  	it( "7 является числом Армстронга", function() {
+	  	it( "7 является числом Армстронга", () => {
     		assert.equal(narcissistic( 7 ), true, "7 is narcissistic" );
   		});
-		it( "1634 является числом Армстронга", function() {
+		it( "1634 является числом Армстронга", () => {
 		    assert.equal(narcissistic( 1634 ), true, "1634 is narcissistic" );
 	  	});
-	  	it( "42360 не является числом Армстронга", function() {
+	  	it( "42360 не является числом Армстронга", () => {
 		    assert.equal(narcissistic( 42360 ), false, "42360 is not narcissistic" );
 	  	});
-	  	it( "47214 не является числом Армстронга", function() {
+	  	it( "47214 не является числом Армстронга", () => {
 		    assert.equal(narcissistic( 47214 ), false, "47214 is not narcissistic" );
 	  	});
-	  	it( "24678050 является числом Армстронга", function() {
+	  	it( "24678050 является числом Армстронга", () => {
 		    assert.equal(narcissistic( 24678050 ), true, "24678050 is narcissistic" );
 	  	});
 	});
@@ -110,19 +110,19 @@ describe('Human Readable Time', () => {
 	describe(`Write a function, which takes a non-negative integer (seconds) 
 			as input and returns the time in a human-readable format (HH:MM:SS)`, () => {
 
-	  	it( "Должен вывести корректный формат времени", function() {
+	  	it( "Должен вывести корректный формат времени", () => {
 		    assert.equal(humanReadable(0), '00:00:00');
 	  	});
-	  	it( "Должен вывести корректный формат времени", function() {
+	  	it( "Должен вывести корректный формат времени", () => {
 		    assert.equal(humanReadable(90), '00:01:30');
 	  	});
-	  	it( "Должен вывести корректный формат времени", function() {
+	  	it( "Должен вывести корректный формат времени", () => {
 		    assert.equal(humanReadable(3599), '00:59:59');
 	  	});
-	  	it( "Должен вывести корректный формат времени", function() {
+	  	it( "Должен вывести корректный формат времени", () => {
 		    assert.equal(humanReadable(45296), '12:34:56');
 	  	});
-	  	it( "Должен вывести корректный формат времени", function() {
+	  	it( "Должен вывести корректный формат времени", () => {
 		    assert.equal(humanReadable(359999), '99:59:59');
 	  	});
 	});
@@ -135,20 +135,61 @@ describe('Rot13', () => {
 			Only letters from the latin/english alphabet should be shifted, 
 			like in the original Rot13 "implementation".`, () => {
 				
-		it("Строка test должна быть зашифрована в grfg", function(){
+		it("Строка test должна быть зашифрована в grfg", () => {
 			assert.equal(rot13("test"), "grfg")
 		})
-		it("Строка 10+2 is twelve. должна быть зашифрована в gjryir.", function(){
+		it("Строка 10+2 is twelve. должна быть зашифрована в gjryir.", () => {
 			assert.equal(rot13("10+2 is twelve."), "10+2 vf gjryir.")
 		})
-		it("Строка Codewars должна быть зашифрована в Pbqrjnef", function(){
+		it("Строка Codewars должна быть зашифрована в Pbqrjnef", () => {
 			assert.equal(rot13("Codewars"), "Pbqrjnef")
 		})
-		it("Строка Ruby is cool! должна быть зашифрована в pbby!", function(){
+		it("Строка Ruby is cool! должна быть зашифрована в pbby!", () => {
 			assert.equal(rot13("Ruby is cool!"), "Ehol vf pbby!")
 		})
-		it("Строка abcdefghijklmnopqrstuvwxyz должна быть зашифрована в nopqrstuvwxyzabcdefghijklm", function(){
+		it("Строка abcdefghijklmnopqrstuvwxyz должна быть зашифрована в nopqrstuvwxyzabcdefghijklm", () => {
 			assert.equal(rot13("abcdefghijklmnopqrstuvwxyz"), "nopqrstuvwxyzabcdefghijklm")
+		})
+	});
+});
+describe('Range Extraction', () => {
+	describe(`A format for expressing an ordered list of integers is to use a comma separated list of either 
+			-individual integers
+			or a range of integers denoted by the starting integer separated from the end integer in the range by a dash, '-'. 
+			The range includes all integers in the interval including both endpoints. 
+			It is not considered a range unless it spans at least 3 numbers. For example ("12, 13, 15-17")
+			Complete the solution so that it takes a list of integers in increasing order 
+			and returns a correctly formatted string in the range format.`, () => {
+
+		it(`Должно получить следующую строку "-6,-3-1,3-5,7-11,14,15,17-20"`, () => {
+			assert.equal(
+				solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]), 
+				"-6,-3-1,3-5,7-11,14,15,17-20"
+			)
+		})				
+		it(`Должно получить следующую строку "-3--1,2,10,15,16,18-20"`, () => {
+			assert.equal(
+				solution([-3,-2,-1,2,10,15,16,18,19,20]), 
+				"-3--1,2,10,15,16,18-20"
+			)
+		})
+		it(`Должно получить следующую строку "-66,-63,-61,-59,-58,-56,-54,-51--49,-47,-46,-43,-41,-39"`, () => {
+			assert.equal(
+				solution([-66, -63, -61, -59, -58, -56, -54, -51, -50, -49, -47, -46, -43, -41, -39]), 
+				"-66,-63,-61,-59,-58,-56,-54,-51--49,-47,-46,-43,-41,-39"
+			)
+		})
+		it(`Должно получить следующую строку "-52,-49,-47--45,-43,-40,-38,-37,-35,-33,-32,-30,-28"`, () => {
+			assert.equal(
+				solution([-52, -49, -47, -46, -45, -43, -40, -38, -37, -35, -33, -32, -30, -28]), 
+				"-52,-49,-47--45,-43,-40,-38,-37,-35,-33,-32,-30,-28"
+			)
+		})
+		it(`Должно получить следующую строку "-89,-87--85,-83--81,-79,-77,-74--72,-70,-68,-65"`, () => {
+			assert.equal(
+				solution([-89, -87, -86, -85, -83, -82, -81, -79, -77, -74, -73, -72, -70, -68, -65]), 
+				"-89,-87--85,-83--81,-79,-77,-74--72,-70,-68,-65"
+			)
 		})
 	});
 });
