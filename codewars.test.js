@@ -193,3 +193,27 @@ describe('Range Extraction', () => {
 		})
 	});
 });
+describe(`Count the number of Duplicates`, () => {
+	describe(`Write a function that will return the count of distinct case-insensitive
+	 		alphabetic characters and numeric digits that occur more than once in the input string.
+	 		The input string can be assumed to contain only alphabets
+	 		(both uppercase and lowercase) and numeric digits.`, () => {
+
+	});
+		it(`У "abcde" 0 дубликатов`, () => {
+			assert.equal(duplicateCount("abcde"), 0)
+		})
+		it(`У "Indivisibilities" 2 дубликата`, () => {
+			assert.equal(duplicateCount("Indivisibilities"), 2)
+		})
+		it(`У "abcdefxyz" 0 дубликатов`, () => {
+			assert.equal(duplicateCount("abcdefxyz"), 0)
+		})
+		it(`У "abcdefghABCDabcabA" 4 дубликата`, () => {
+			assert.equal(duplicateCount("abcdefghABCDabcabA"), 4)
+		})
+		it(`У "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" 26 дубликата`, () => {
+			assert.equal(duplicateCount("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 26)
+		})
+		
+});

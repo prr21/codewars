@@ -96,3 +96,22 @@ function solution(list){
 	}
 	return arr.join()
 }
+
+// https://www.codewars.com/kata/counting-duplicates/train/javascript
+function duplicateCount(text){
+	let count = 0, has = [];
+	text = text.toUpperCase();
+  
+	for(let i = 0; i < text.length; i++){
+		if ( has.indexOf(text[i]) != -1 ) continue;
+
+		let re = new RegExp(text[i], 'g'),
+			ltr = text.match(re);
+
+		if (ltr.length >= 2) {
+			has.push(text[i]);
+			count++;
+		}
+	}
+  	return count;
+}
