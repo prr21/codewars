@@ -199,7 +199,6 @@ describe(`Count the number of Duplicates`, () => {
 	 		The input string can be assumed to contain only alphabets
 	 		(both uppercase and lowercase) and numeric digits.`, () => {
 
-	});
 		it(`У "abcde" 0 дубликатов`, () => {
 			assert.equal(duplicateCount("abcde"), 0)
 		})
@@ -215,5 +214,45 @@ describe(`Count the number of Duplicates`, () => {
 		it(`У "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" 26 дубликата`, () => {
 			assert.equal(duplicateCount("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 26)
 		})
+	});	
+});
+describe(`The Lift`, () => {
+	describe(`A multi-floor building has a Lift in it. People are queued on different floors waiting for the Lift.
+		Some people want to go up. Some people want to go down. The floor they want to go to is represented by a number 
+		(i.e. when they enter the Lift this is the button they will press). 
+		Check kata https://www.codewars.com/kata/the-lift/train/javascript for information and rules`, () => {
+
+		it(`Лифт должен останавливаться на 0,1,2,3,4,5,0 этажах`, () => {
+			let queues = [[], [3], [4], [], [5], [], [], []];
+			let result = theLift(queues,5);
+
+			expect([0, 1, 2, 3, 4, 5, 0]).to.deep.equal(result)
+		})
+		it(`Лифт должен останавливаться на 0, 1, 2, 3, 6, 5, 3, 2, 0 этажах`, () => {
+			let queues = [[3], [2], [0], [2], [], [], [5]];
+			let result = theLift(queues,5);
+
+			expect([0, 1, 2, 3, 6, 5, 3, 2, 0]).to.deep.equal(result)
+		})
+		it(`Лифт должен останавливаться на 0, 2, 4, 2, 4, 2, 0 этажах`, () => {
+			let queues = [[], [], [4, 4, 4, 4], [], [2, 2, 2, 2], [], []];
+			let result = theLift(queues,2);
+
+			expect([0, 2, 4, 2, 4, 2, 0]).to.deep.equal(result)
+		})
+		it(`Лифт должен останавливаться на 0, 3, 5, 4, 0, 3, 5, 4, 0 этажах`, () => {
+			let queues = [[3, 3, 3, 3, 3, 3], [], [], [], [], [4, 4, 4, 4, 4, 4], []];
+			let result = theLift(queues,5);
+
+			expect([0, 3, 5, 4, 0, 3, 5, 4, 0]).to.deep.equal(result)
+		})
+		it(`Лифт должен останавливаться 
+			на 0, 6, 5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 0, 4, 3, 2, 1, 0, 3, 2, 1, 0, 1, 0 этажах`, () => {
+			let queues = [[], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+			let result = theLift(queues,5);
+
+			expect([0, 6, 5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 0, 4, 3, 2, 1, 0, 3, 2, 1, 0, 1, 0]).to.deep.equal(result)
+		})
 		
+	});	
 });
