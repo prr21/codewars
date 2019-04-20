@@ -115,3 +115,72 @@ function duplicateCount(text){
 	}
   	return count;
 }
+
+// https://www.codewars.com/kata/the-lift/train/javascript
+var theLift = function(queues, capacity) {
+	let stops = [0], lastStop = -1,
+
+	// Найти общее кол-во людей
+	peopleLeft = queues
+		.filter(arr => arr.length)
+		.map(arr => arr.length)
+
+    if (peopleLeft.length) {
+      peopleLeft = peopleLeft.reduce((a,b) => a+b);
+      
+    } else return [0];
+
+    // Спускать/Поднимать лифт пока жители не кончатся
+	while (peopleLeft > 0){
+		if (lastStop === 1) {
+			lastStop = moveLift(queues, queues.length-1, 'n >=0', -1); // Спустить лифт
+	
+		} else if (lastStop === -1) {
+			lastStop = moveLift(queues, 0, 'n < queues.length', 1); //  Поднять лифт
+		}
+  	}
+
+	function moveLift(home, start, end, step) {
+  		let inLift = [],
+  			different = step == -1? '<':'>';
+
+		for (let n = start; eval(end); n+=step) {
+			let floor = home[n],
+				  currentStop = false;
+
+			// Если чей-то этаж
+		  	if (inLift.indexOf(n) != -1) {
+	  			inLift = inLift.filter(a => a != n);
+	  			stops.push(n);
+			}
+	      
+		  	if (!floor.length) continue // Пропустить если этаж пустой
+	      	let maxPeople = floor.length;
+	      
+			for (let p = 0; p < maxPeople; p++) {
+				let person = floor[p],
+	            	way = eval(person + different + n); // В правильную ли сторону нужно этому жителю?
+
+				// Если лифт заполнен
+				if (inLift.length >= capacity) {
+					way? currentStop=true :0;
+					continue;
+
+				} else if (way){
+	          		home[n].splice(p,1); // Убрать человека с этажа
+					inLift.push(person); // И добавить его в лифт
+					currentStop = true;
+					peopleLeft--;
+	          		maxPeople--;
+				    p--;
+				} 
+			}
+	      	if (n == stops[stops.length-1]) currentStop = false;
+			currentStop? stops.push(n):0;
+		};
+   		return step;
+	}
+  
+	stops[stops.length-1]? stops.push(0) :1;
+  	return stops
+}
