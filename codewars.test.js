@@ -127,6 +127,31 @@ describe('Human Readable Time', () => {
 	  	});
 	});
 });
+describe(`Two to One`, () => {
+	describe(`Take 2 strings s1 and s2 including only letters from ato z. 
+		Return a new sorted string, the longest possible, containing distinct letters,
+		each taken only once - coming from s1 or s2.`, () => {
+
+	  	it( "Должно вывести aehrsty", () => {
+		    assert.equal(longest("aretheyhere", "yestheyarehere"), 'aehrsty');
+	  	});
+	  	it( "Должно вывести abcdefghilnoprstu", () => {
+		    assert.equal(longest("loopingisfunbutdangerous", "lessdangerousthancoding"), 'abcdefghilnoprstu');
+	  	});
+		it( "Должно вывести cdeghjklmnopqrtuvwyz ", () => {
+		    assert.equal(longest("eerrmmmzzttjjjjuueeeeelllpppwrrrrgggwwg",
+		    "loodyyllkkjjjvvhhhcccggqnnnnneeeeeggg"), 'cdeghjklmnopqrtuvwyz');
+	  	});
+	  	it( "Должно вывести eghjklnoqrtuvwxyz", () => {
+		    assert.equal(longest("oooojeeuuvvvnnxrrwwwjgghhhhzzzzooonnn",
+		    "tjjyyyyykyynooooowwwllllzzzwwqqzrrrt"), 'eghjklnoqrtuvwxyz');
+	  	});
+	  	it( "Должно вывести dfhijklmnopqstxyz ", () => {
+		    assert.equal(longest("pppiikkkffffxxmmjjyttnnxxxjjjjhhhhnnddd",
+		    "isssnnnppzzzqqqxxxpooooxxxllllttqqqoxx"), 'dfhijklmnopqstxyz');
+	  	});
+	});	
+});
 describe('Rot13', () => {
 	describe(`ROT13 is a simple letter substitution cipher that replaces a letter 
 			with the letter 13 letters after it in the alphabet. ROT13 is an example of the Caesar cipher. 
