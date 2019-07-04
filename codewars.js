@@ -45,6 +45,20 @@ function narcissistic(value) {
 	return result == value;
 }
 
+// https://www.codewars.com/kata/two-to-one/train/javascript
+function longest(a,b) {
+ 	let arr = a + b,
+      	res = [];
+ 	arr = arr.split('').sort();
+
+ 		for (let l = 0; l < arr.length; l++) {
+ 			if (res.indexOf(arr[l]) !== -1) continue;
+ 			
+ 			res.push(arr[l])
+ 		}
+  	return res.join('')
+}
+
 // https://www.codewars.com/kata/human-readable-time/train/javascript
 function humanReadable(seconds) {
   	var hours = seconds / 3600, minutes = seconds / 60 % 60, newSeconds = seconds %  60 ;
