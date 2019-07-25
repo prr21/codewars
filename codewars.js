@@ -45,6 +45,72 @@ function narcissistic(value) {
 	return result == value;
 }
 
+// https://www.codewars.com/kata/parseint-reloaded/train/javascript
+function parseInt2(string) {
+	let result = 0,	preRes = 0,
+		strings = string.split(' '),
+
+		numeral = {
+			zero: 	0,	ten: 		10,	twenty:  20,
+			one: 	1,	eleven: 	11,	thirty:  30,
+			two: 	2,	twelve: 	12,	forty: 	 40,
+			three: 	3,	thirteen: 	13,	fifty:   50,
+			four: 	4,	fourteen: 	14,	sixty: 	 60,
+			five: 	5,	fifteen:	15,	seventy: 70,
+			six: 	6,	sixteen: 	16,	eighty:  80,
+			seven: 	7,	seventeen: 	17,	ninety:  90,
+			eight: 	8,	eighteen: 	18,
+			nine: 	9,	nineteen: 	19
+		},
+
+		bigNumeral = {
+			hundred: 100, 
+			thousand: 1000,
+			million : 1000000
+		}
+
+	for (let i = 0; i < strings.length; i++) {
+
+		let str 	= strings[ i ],
+			nextStr = strings[i+1],
+			num = numeral[str];
+
+		//Двухзначное число
+		if (str.indexOf('-') != -1) {
+			str = str.split('-');
+
+			num = numeral[ str[0] ]+
+				  numeral[ str[1] ]
+
+		} else if(str == 'and')	continue
+
+		//Является ли следующее число из bigNumeral
+		if ( nextStr && ['hundred', 'thousand', 'million'].includes(nextStr) ) {
+			i++;
+
+			if (bigNumeral[nextStr] < result) {
+				num *= bigNumeral[nextStr];
+				preRes = 0;
+
+			} else {
+				preRes += num;
+				preRes *= bigNumeral[nextStr];
+				num = preRes;
+			}
+
+		// Если число из bigNumeral попалось не в nextStr
+		} else if (num == undefined) {
+      		num = preRes * bigNumeral[ strings[i] ]
+      		preRes = num;
+      	
+      	//Если следующее число не из bigNumeral
+    	} else preRes += num;
+    
+		preRes > result ? result = preRes : result+=num;
+	}
+  return result
+}
+
 // https://www.codewars.com/kata/two-to-one/train/javascript
 function longest(a,b) {
  	let arr = a + b,
