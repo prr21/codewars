@@ -106,6 +106,28 @@ describe('Does my number look big in this?', () => {
 	});
 });
 
+describe('parseInt() reloaded', () => {
+	describe(`In this kata we want to convert a string into an integer. 
+		The strings simply represent the numbers in words.`, () => {
+
+		it( "One должен конвертироваться в 1", () => {
+			(assert.equal(parseInt2('one'), 1, "Expected 1"));
+		})
+		it( "Twenty-one должно конвертироваться в 21", () => {
+			(assert.equal(parseInt2('twenty-one'), 21, "Expected 21"));
+		})
+		it( "Two hundred forty-six должен конвертироваться в 246", () => {
+			(assert.equal(parseInt2('two hundred forty-six'), 246, "Expected 246"));
+		})
+		it( "Six hundred sixty-six thousand six hundred sixty-six должен конвертироваться в 666666", () => {
+			(assert.equal(parseInt2('six hundred sixty-six thousand six hundred and sixty-six'), 666666, "Expected 666666"));
+		})
+		it( "Five hundred thousand three hundred должен конвертироваться в 500300", () => {
+			(assert.equal(parseInt2('five hundred thousand three hundred'), 500300, "Expected 500300"));
+		})
+	});
+});
+
 describe('Human Readable Time', () => {
 	describe(`Write a function, which takes a non-negative integer (seconds) 
 			as input and returns the time in a human-readable format (HH:MM:SS)`, () => {
