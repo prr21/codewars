@@ -198,3 +198,163 @@ var theLift = function(queues, capacity) {
 	stops[stops.length-1]? stops.push(0) :1;
   	return stops
 }
+
+// https://www.codewars.com/kata/binomial-expansion/train/javascript
+function expand(expr) {
+	let re  = /[-+]?(\d+|[a-z])[a-z]?[/^]?\d?/g;
+	expr = expr.match(re);
+
+	let power = +expr.splice(2)[0],
+		newExpr = expr.slice();
+	
+	if (power === 0) return '1';
+	else if (power === 1) return expr.join('');
+
+	let calc = new calcExp();
+	while(--power > 0){
+		newExpr = calc.calcArrs(expr,newExpr);
+	}
+
+	newExpr = newExpr.filter((i) => parseInt(i) != 0 );
+	return newExpr.join('')
+}
+
+class calcExp {
+	calcArrs(arr1, arr2) {
+		let res = [];
+
+		for(let i = 0; i < arr1.length; i++){
+			let n1 = arr1[i],
+
+				newArr = arr2.map((n2) => {
+				return this.parse(n1,n2)
+			})
+			res.push(newArr)
+		}
+
+		let val1 = res[0].shift(), val2 = res[1].pop();
+
+		let finalRes = [val1], x = this.getX(val1),
+			regexp = new RegExp( x +"[^=]*");
+
+		for (let i = 0; i < res[0].length; i++) {
+			let r1 = res[0], r2 = res[1];
+
+			let sum = +this.getNum(r1[i]) + +this.getNum(r2[i]),
+				foo = r1[i].match(regexp)[0];
+
+			sum = sum >= 0? '+'+sum:sum;
+			finalRes.push(sum+foo);
+		}
+		finalRes.push(val2);
+		return  finalRes;
+	}
+
+	regEx = {
+		reOnXF:  /^[+-]?[\d?]*[a-z]\^([0-9])+$/, // Ищем неизвестное в степени (x^3)
+		reOnX:   /^[+-]?[\d?]*[a-z]$/,			// Ищем неизвестное (x)
+		reOnNum: /^[+-]?[\d]*$/				   // Ищем число
+	};
+
+	parse(n1,n2) {
+		const { reOnXF, reOnX, reOnNum } = this.regEx;
+
+		while(true) {
+			if ( reOnX.test(n1) && reOnX.test(n2) ) {
+				return this.parseX(n1, n2);
+
+			} else 
+				if (reOnX.test(n1) && reOnNum.test(n2)) {
+				return this.parseX_Num(n1,n2);
+
+			} else if ( reOnXF.test(n1) && reOnX.test(n2)) {
+				return this.parseXF_X(n1,n2);
+
+			} else if ( reOnXF.test(n1) && reOnNum.test(n2)) {
+				return this.parseXF_Num(n1,n2);
+
+			} else if ( reOnXF.test(n1) && reOnXF.test(n2)) {
+				return this.parseXF(n1,n2);
+
+			} else if ( reOnNum.test(n1) && reOnNum.test(n2)) {
+				return this.parseNum(n1,n2);
+
+			} else {let n = n2; n2 = n1; n1 = n; }
+		}
+	}
+
+	checkXOnMark = (num) => {
+		if (num == 1) {
+			return '';
+
+		} else if (num == -1) {
+			return '-';
+
+		} else return num;
+	}
+
+	getNum = (n) => {
+		let z = n.match(/^[-+]/);
+		n = n.match(/^[-+]?\d+/);
+
+		z = z? z[0]:'';
+		return n? n[0]:z+1;
+	}
+	getX = (n) => {
+		return n.match(/[a-z]/)[0]
+	}
+	getFact = (n) => {
+		return n.match(/\d+$/)[0];
+	}
+	getXF = (n) => {
+		let fac = +this.getFact(n),
+			num = +this.getNum(n),
+			x = this.getX(n);
+
+		let obj = {fac,num,x}
+		return obj;
+	}
+
+	parseNum = (n1, n2) => {
+		let res = n1*n2;
+			res = res >= 0? '+'+res:''+res;
+		return res;
+	}
+	parseX = (n1, n2) => {
+		let num1 = this.getNum(n1),
+			num2 = this.getNum(n2),
+			sum = this.checkXOnMark(num1*num2),
+			x = this.getX(n1);
+
+		return sum + x+'^'+2;
+	}
+	parseXF = (n1, n2) => {
+		let obj1 = this.getXF(n1),
+			obj2 = this.getXF(n2),
+
+			sum = this.checkXOnMark(obj1.num*obj2.num);
+		let res = sum + obj1.x+'^'+(obj1.fac + --obj2.fac);
+
+		return res
+	}
+	parseXF_X = (n1, n2) => {
+		let obj = this.getXF(n1),
+			num = this.getNum(n2),
+
+			sum = this.checkXOnMark(obj.num * num);
+		let res = sum + obj.x +'^'+(obj.fac+1);
+		return res
+	}
+	parseX_Num = (n1, n2) => {
+		let x = this.getX(n1),
+			num1 = this.getNum(n1),
+			sum = this.checkXOnMark(num1*n2);
+
+		return sum+x;
+	}
+	parseXF_Num = (n1, n2) => {
+		let obj = this.getXF(n1);
+
+		return (n2*obj.num) + obj.x+'^'+obj.fac;
+	}
+}
