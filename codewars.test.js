@@ -281,3 +281,29 @@ describe(`The Lift`, () => {
 		
 	});	
 });
+describe(`Binomial Expansion`, () => {
+	describe(`The purpose of this kata is to write a program that can do some algebra. 
+		Write a function expand that takes in an expresion with a single, one character variable, and expands it. 
+		The expresion is in the form (ax+b)^n where a and b are integers which may be positive or negative, 
+		x is any one character long variable, and n is a natural number. If a = 1, 
+		no coeficient will be placed in front of the variable. If a = -1, a "-" 
+		will be placed in front of the variable.`, () => {
+
+		it(`(a+b)^1 => a+b`, () => {
+			expect("x+1").to.deep.equal(expand( "(x+1)^1" ))
+		})
+		it(`(a+b)^2 => a^2 + 2ab + b^2`, () => {
+			expect("x^2+2x+1").to.deep.equal(expand( ("x+1)^2") ))
+		})
+		it(`(-a-b)^3 => a^3 - 2a^2b - 2b^2a - b^3`, () => {
+			expect("-8k^3-36k^2-54k-27").to.deep.equal(expand( ("(-2k-3)^3") ))
+		})
+		it(`(-5m+3)^4 => 625m^4-1500m^3+1350m^2-540m+81`, () => {
+			expect("625m^4-1500m^3+1350m^2-540m+81").to.deep.equal(expand( ("(-5m+3)^4") ))
+		})
+		it(`(2q+4)^10 => ...`, () => {
+			expect("1024q^10+20480q^9+184320q^8+983040q^7+3440640q^6+8257536q^5+13762560q^4+15728640q^3+11796480q^2+5242880q+1048576").to.deep.equal(expand( ("(2q+4)^10") ))
+		})
+		
+	});	
+});
