@@ -424,3 +424,26 @@ class calcExp {
 		return (n2*obj.num) + obj.x+'^'+obj.fac;
 	}
 }
+
+function sumIntervals(intervals){
+	intervals.sort( ([a],[b]) => a-b);
+
+	let min = intervals[0][0],
+		max = intervals[0][1],
+		count = max-min;
+
+	intervals.map( (n) => {
+		if (max > n[1] || max == n[1]){
+			return
+
+		} else if ( n[1] > max && n[0] < max ){
+			count += n[1] - max;
+			max = n[1];
+
+		} else {
+			count += n[1] - n[0];
+			max = n[1];			
+		}
+	})
+	return count;
+}
