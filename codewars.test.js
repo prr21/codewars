@@ -329,3 +329,27 @@ describe(`Binomial Expansion`, () => {
 		
 	});	
 });
+describe(`Sum of Intervals`, () => {
+	describe(`Write a function which accepts an array of intervals, and returns the sum of all the interval lengths.
+		Overlapping intervals should only be counted once.`, () => {
+
+		it(`Сумма интервалов массива [ [1, 5],[6, 10] ] = 8`, () => {
+			assert.equal(sumIntervals([ [1, 5],[6, 10] ]), 8)
+		});
+		it(`Сумма интервалов массива [ [1, 5],[10, 20],[1, 6],[16, 19],[5, 11] ] = 19`, 
+			() => {assert.equal(sumIntervals([ [1, 5],[10, 20],[1, 6],[16, 19],[5, 11] ]), 19)
+		});
+		it(`Сумма интервалов массива [ [ 2, 9 ], [ 2, 6 ], [ 2, 4 ], [ 2, 9 ], [ 2, 5 ] ] = 7`, () => {
+			assert.equal(sumIntervals([ [2, 9],[2, 6],[2, 4],[2, 9],[2, 5] ]), 7)
+		});
+		it(`Сумма интервалов массива [[-79, 453],[-54, 453] ] = 532`, () => {
+			assert.equal(sumIntervals([[-79, 453],[-54, 453] ]), 532)
+		});
+		it(`Сумма интервалов массива [[-27, 94],[81, 464],[494, 499],[435, 437],[-226, 181],
+			[-322, -57],[-171, -125],[-414, 480],[399, 480] ] = 899`, () => {
+
+			assert.equal(sumIntervals([[-27, 94],[81, 464],[494, 499],[435, 437],[-226, 181],[-322, -57],[-171, -125],[-414, 480],[399, 480] ]), 899)
+		});
+	})
+
+})
