@@ -353,3 +353,25 @@ describe(`Sum of Intervals`, () => {
 	})
 
 })
+describe(`Calculator`, () => {
+	describe(`Create a simple calculator that given a string of operators (), +, -, *, / 
+		and numbers separated by spaces returns the value of that expression.`, () => {
+
+		it(`Значение "2 / 2 + 3 * 4 - 6" будет равно 7`, () => {
+			assert.equal(calculate.evaluate("2 / 2 + 3 * 4 - 6"), 7)
+		})
+		it(`Значение "2 + 3 * 4 / 3 - 6 / 3 * 3 + 8" будет равно 8`, () => {
+			assert.equal(calculate.evaluate("2 + 3 * 4 / 3 - 6 / 3 * 3 + 8"), 8)
+		})
+		it(`Значение "97 + 30 / 35 + 73 + 14 - 55 / 40" будет равно 183.48214285714286`, () => {
+			assert.equal(calculate.evaluate("97 + 30 / 35 + 73 + 14 - 55 / 40"), 183.48214285714286)
+		})
+		it(`Значение "69 * 28 + 87 - 59 / 44 - 77 / 19 + 20" будет равно 2033.6064593301437`, () => {
+			assert.equal(calculate.evaluate("69 * 28 + 87 - 59 / 44 - 77 / 19 + 20"), 2033.6064593301437)
+		})
+		it(`Значение 96 * 27 - 34 * 90 * 39 * 73 * 77 - 25 + 25" будет равно -670807548`, () => {
+			assert.equal(calculate.evaluate("96 * 27 - 34 * 90 * 39 * 73 * 77 - 25 + 25"), -670807548)
+		})
+		
+	})
+})
