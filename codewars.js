@@ -425,6 +425,7 @@ class calcExp {
 	}
 }
 
+// https://www.codewars.com/kata/sum-of-intervals/train/javascript
 function sumIntervals(intervals){
 	intervals.sort( ([a],[b]) => a-b);
 
@@ -447,3 +448,57 @@ function sumIntervals(intervals){
 	})
 	return count;
 }
+
+// https://www.codewars.com/kata/calculator/train/javascript
+const Calculator = function() {
+  	this.evaluate = string => {
+  		const higerOrd = /(\S+) (\*|\/) (\S+)/;
+  		const lowerOrd = /(\S+) (\+|\-) (\S+)/;
+
+  		let result = string;
+
+  		while(1) {
+  			const { replaceExp, calcExp } = this;
+
+  			let higerExp = result.match(higerOrd)
+			let lowerExp = result.match(lowerOrd)
+
+  			if (higerExp) {
+  				result = replaceExp( higerExp, calcExp(higerExp) );
+
+  			} else if (lowerExp){
+	  			result = replaceExp( lowerExp, calcExp(lowerExp) );
+
+  			} else return result
+  		}
+  	}
+
+  	this.calcExp = exp => {
+  		let symbs = exp[0].split(' ');
+  		let opr = symbs[1];
+  		let result;
+
+  		switch (opr) {
+  			case ('/'):
+				return +symbs[0] / +symbs[2];
+
+	  		case ('*'):
+				return +symbs[0] * +symbs[2];
+
+	  		case ('-'):
+				return +symbs[0] - +symbs[2];
+
+	  		case ('+'):
+				return +symbs[0] + +symbs[2];
+  		}
+  	}
+
+  	this.replaceExp = (exp, newExp) => {
+  		if ( (newExp + '').indexOf('e') !== -1) {
+  			newExp = 0;
+  		}
+  		return exp.input.replace(exp[0], newExp);
+  	}
+};
+
+var calculate = new Calculator()
